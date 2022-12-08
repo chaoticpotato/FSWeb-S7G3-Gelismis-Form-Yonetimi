@@ -53,6 +53,18 @@ describe('sayfayı aç', () => {
       .should('not.be.disabled')
   })
 
+  it('tek karakter yaz, error görüntüleniyor mu?', () => {
+    cy
+      .get('.cy-renkInput')
+      .type('t')
+      .should('have.value', 't')
+      .blur()
+
+    cy
+      .get('.cy-error')
+      .should('have.text', 'Renginiz 2 karakterden kısa olamaz')
+  })
+
   it('butona tıkladığında input sıfırlandı mı?', () => {
     cy
       .get('.cy-renkInput')
