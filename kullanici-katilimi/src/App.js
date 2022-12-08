@@ -35,6 +35,13 @@ function App() {
     formSchema.isValid(formData).then((valid) => setDisabled(!valid));
   }, [formData]);
 
+  useEffect(() => {
+    if (eklenen) {
+      document.body.style.background = eklenen.favColor;
+    }
+  }, [eklenen])
+
+
   const checkFormErrors = (name, value) => {
     yup
       .reach(formSchema, name)
@@ -87,15 +94,16 @@ function App() {
             <input
               name="favColor"
               type="text"
+              className="cy-renkInput"
               value={formData.favColor}
               onChange={handleFormChange}
             />
           </label>
         </p>
         <p>
-          <input type="submit" value="Gönder" disabled={disabled} />
+          <input type="submit" value="Gönder" className="cy-submit" disabled={disabled} />
         </p>
-        <div style={{ color: 'red' }}>
+        <div className="cy-error" style={{ color: 'red' }}>
           {formError.favColor}
         </div>
 
